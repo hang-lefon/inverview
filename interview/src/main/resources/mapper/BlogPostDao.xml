@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.interview.dao.BlogPostDao">
+    <insert id="add">
+        insert into blogpost(title,content,userid) values(#{title},#{content},#{userid})
+    </insert>
+    <delete id="delete">
+        delete from blogpost where id = #{id}
+    </delete>
+    <select id="list" resultType="com.example.interview.model.BlogPost">
+        select * from blogpost where userid = #{uid} order by createTime desc
+    </select>
+
+    <select id="select" resultType="com.example.interview.model.BlogPost">
+        select * from blogpost where id = #{id}
+    </select>
+    <update id="update">
+        update blogpost set title = #{title},content = #{content} where id = #{id}
+    </update>
+
+</mapper>

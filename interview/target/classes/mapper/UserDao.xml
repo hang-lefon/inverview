@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.interview.dao.UserDao">
+
+    <select id="select" resultType="com.example.interview.model.User">
+        select id,username,email,password from user
+        <where>
+            <if test="username != null ">
+                and username = #{username}
+            </if>
+            <if test="email != null ">
+                and email = #{email}
+            </if>
+            <if test="password != null">
+                and password = #{password}
+            </if>
+        </where>
+    </select>
+    <select id="selectEmail" resultType="com.example.interview.model.User">
+        select * from user where email = #{email}
+    </select>
+    <select id="selectById" resultType="com.example.interview.model.User">
+        select * from user where id = #{id}
+    </select>
+    <insert id="register" keyProperty="id" useGeneratedKeys="true">
+            insert into user(username,email,password) values(#{username},#{email},#{password})
+    </insert>
+
+</mapper>
